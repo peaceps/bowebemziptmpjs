@@ -979,11 +979,12 @@
 	}
 
 	function resolveURLs(urls) {
-		var a = document.createElement('a');
-		return urls.map(function(url) {
-			a.href = url;
-			return a.href;
-		});
+	    return urls;
+		// var a = document.createElement('a');
+		// return urls.map(function(url) {
+		// 	a.href = url;
+		// 	return a.href;
+		// });
 	}
 
 	var DEFAULT_WORKER_SCRIPTS = {
@@ -1007,7 +1008,7 @@
 			scripts = DEFAULT_WORKER_SCRIPTS[type].slice(0);
 			scripts[0] = (obj.zip.workerScriptsPath || '') + scripts[0];
 		}
-		var worker = new Worker(scripts[0]);
+        var worker = new Worker(window.URL.createObjectURL(new Blob([scripts[0]])));
 		// record total consumed time by inflater/deflater/crc32 in this worker
 		worker.codecTime = worker.crcTime = 0;
 		worker.postMessage({ type: 'importScripts', scripts: scripts.slice(1) });
