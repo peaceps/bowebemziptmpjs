@@ -2097,7 +2097,6 @@
 
 (function(global) {
     "use strict";
-    console.info('dasdfasdfasd');
 
     // Global
     var MAX_BITS = 15;
