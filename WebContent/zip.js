@@ -662,7 +662,7 @@
 					for (var i = bytes.length - EOCDR_MIN; i >= 0; i--) {
 						if (bytes[i] === seekBytes[0] && bytes[i + 1] === seekBytes[1] && bytes[i + 2] === seekBytes[2]
                             && bytes[i + 3] === seekBytes[3]) {
-						    var eocdrDataView = new DataView(bytes.buffer, i, length);
+						    var eocdrDataView = new DataView(bytes.buffer, i, Math.min(bytes.length - i, length));
 						    // When offset is 0xFFFFFFFF it's a zip64 eocdr
 						    if (eocdrDataView.getUint32(16, true) === 0xFFFFFFFF) {
 						        // search for zip64 eocdr
